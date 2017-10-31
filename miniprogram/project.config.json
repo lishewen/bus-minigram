@@ -7,9 +7,9 @@
 		"minified": true
 	},
 	"compileType": "weapp",
-	"libVersion": "1.5.4",
-	"appid": "wxaaa5eb3ffa811a29",
-	"projectname": "%E4%BB%8A%E6%97%A5%E5%85%AC%E4%BA%A4",
+	"libVersion": "1.6.0",
+	"appid": "wx62376b52cf9b8296",
+	"projectname": "%E7%AE%97%E7%A5%9E",
 	"condition": {
 		"weapp": {
 			"current": -1,
