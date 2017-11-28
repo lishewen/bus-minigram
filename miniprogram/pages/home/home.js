@@ -18,14 +18,19 @@ Page({
   reloadData: function () {
     var self = this
     wx.getLocation({
-      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      type: 'wgs84',//'gcj02', //返回可以用于wx.openLocation的经纬度
       success: function (res) {
         var latitude = res.latitude
         var longitude = res.longitude
+        //console.log(res.latitude);
+        //console.log(res.longitude);
         // debug
         if (app.debug) {
-          latitude = 30.128741;
-          longitude = 120.085117;
+          //市政府
+          //latitude = 30.128741;
+          latitude = 23.476963
+          //longitude = 120.085117;
+          longitude = 111.279115;
         }
 
         app.latitude = latitude;
