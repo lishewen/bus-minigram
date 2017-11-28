@@ -61,7 +61,7 @@ Page({
     var self = this;
     let foldCount = 4;
     wx.request({
-      url: "https://publictransit.dtdream.com/v1/bus/findRouteByName?city=330100&routeName=" + encodeURIComponent(word),
+      url: "https://jbwx.lishewen.com/api/bus/findRouteByName?routeName=" + encodeURIComponent(word),
       success: function (res) {
         if (res.data.result != 0) {
           wx.showToast({
@@ -94,7 +94,7 @@ Page({
     })
 
     wx.request({
-      url: "https://publictransit.dtdream.com/v1/bus/findStopByName?city=330100&stopName=" + encodeURIComponent(word),
+      url: "https://jbwx.lishewen.com/api/bus/findStopByName?stopName=" + encodeURIComponent(word),
       success: function (res) {
         if (res.data.result != 0) {
           wx.showToast({
