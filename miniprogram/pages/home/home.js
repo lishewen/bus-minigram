@@ -37,38 +37,22 @@ Page({
         app.longitude = longitude;
 
         wx.request({
-          url: "https://publictransit.dtdream.com/v1/bus/findNearbyStop?city=330100&radius=1000&lat=" + latitude + "&lng=" + longitude,
+          url: "https://jbwx.lishewen.com/api/bus/findNearbyStop?lat=" + latitude + "&lng=" + longitude,
           success: function (res) {
-            if (res.data.result != 0) {
-              wx.showToast({
-                image: "/resources/error-empty.png",
-                title: res.data.message
-              })
-              return;
-            }
             var stops = [];
-            for (var i in res.data.items) {
-              var item = res.data.items[i];
-              var onestop;
-              for (var j in item.stops) {
-                if (item.stops[j].stop.amapId != 'INVALID_ID') {
-                  onestop = item.stops[j];
-                  break;
-                }
-              }
-              var oneroute = onestop.routes[0];
-              var onebus = oneroute.buses[0];
-
+            for (var i in res.data) {
+              var item = res.data[i];
+              
               var stop = {
-                stopId: onestop.stop.stopId,
-                amapId: onestop.stop.amapId,
+                stopId: item.stopId,
+                amapId: item.amapId,
                 stopName: item.stopName,
-                userDistance: util.formatDistance(onestop ? onestop.stop.userDistance : undefined),
-                routeName: oneroute.route.routeName,
-                routeId: oneroute.route.routeId,
-                nextStation: oneroute.nextStation,
-                targetDistance: util.formatDistance(onebus ? onebus.targetDistance : undefined)
-              }
+                userDistance: util.formatDistance(item.userDistance),
+                routeName: item.routeName,
+                routeId: item.routeId,
+                nextStation: item.nextStation ? item.nextStation:"终点站",
+                targetDistance: util.formatDistance(undefined)
+              };
               stops.push(stop)
             }
             self.setData({
