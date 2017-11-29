@@ -27,7 +27,7 @@ Page({
     wx.showLoading();
     var self = this;
     wx.request({
-      url: "https://publictransit.dtdream.com/v1/bus/getBusPositionByRouteId?userLng=" + (app.longitude || "") + "&userLat=" + (app.latitude || "") + "&routeId=" + this.routeId,
+      url: "https://jbwx.lishewen.com/api/bus/getBusPositionByRouteId?userLng=" + (app.longitude || "") + "&userLat=" + (app.latitude || "") + "&routeId=" + this.routeId,
       success: function (res) {
         if (res.data.result != 0) {
           wx.showToast({
