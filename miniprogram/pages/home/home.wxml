@@ -4,7 +4,7 @@
     <text style="color: #4a4a4a; font-size: 14px;">{{item.stopName}}</text>
     <text style="font-size: 12px;">{{item.userDistance}}</text>
   </navigator>
-  <navigator url="/pages/route/route?routeId={{item.routeId}}&stopId={{item.stopId}}" style="padding: 8px 16px 8px 16px;">
+  <navigator url="/pages/route/route?routeId={{item.routeId}}&stopId={{item.stopId}}&direction={{item.direction}}" style="padding: 8px 16px 8px 16px;">
     <view style="display: flex; justify-content: space-between;">
       <text style="font-size: 18px; color: #4a4a4a;">{{item.routeName}}</text>
       <text style="font-size: 14px;">{{item.targetDistance}}</text>
@@ -15,5 +15,5 @@
   </navigator>
 </view>
 <view wx:if="{{stops.length == 0}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; color: #929292; font-size: 14px; padding-tap: 50%; margin-top: -64px; padding-top: 50%;">
-    <image style="width: 64px; height: 64px; margin-bottom: 8px;" src="/resources/no-bus-stop.png" /> 没有找到附近站点
+  <image style="width: 64px; height: 64px; margin-bottom: 8px;" src="/resources/no-bus-stop.png" /> 没有找到附近站点
 </view>

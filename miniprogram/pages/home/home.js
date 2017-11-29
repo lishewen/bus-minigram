@@ -42,7 +42,7 @@ Page({
             var stops = [];
             for (var i in res.data) {
               var item = res.data[i];
-              
+
               var stop = {
                 stopId: item.stopId,
                 amapId: item.amapId,
@@ -50,8 +50,9 @@ Page({
                 userDistance: util.formatDistance(item.userDistance),
                 routeName: item.routeName,
                 routeId: item.routeId,
-                nextStation: item.nextStation ? item.nextStation:"终点站",
-                targetDistance: util.formatDistance(undefined)
+                nextStation: item.nextStation ? item.nextStation : "终点站",
+                targetDistance: util.formatDistance(item.targetDistance || undefined),
+                direction: item.direction
               };
               stops.push(stop)
             }

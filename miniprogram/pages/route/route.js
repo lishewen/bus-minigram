@@ -17,6 +17,7 @@ Page({
   onLoad: function (options) {
     this.stopId = options.stopId;
     this.routeId = options.routeId;
+    this.direction = options.direction || 0;
   },
 
   onShow: function () {
@@ -27,7 +28,7 @@ Page({
     wx.showLoading();
     var self = this;
     wx.request({
-      url: "https://jbwx.lishewen.com/api/bus/getBusPositionByRouteId?userLng=" + (app.longitude || "") + "&userLat=" + (app.latitude || "") + "&routeId=" + this.routeId,
+      url: "https://jbwx.lishewen.com/api/bus/getBusPositionByRouteId?userLng=" + (app.longitude || "") + "&userLat=" + (app.latitude || "") + "&routeId=" + this.routeId + "&direction=" + this.direction,
       success: function (res) {
         if (res.data.result != 0) {
           wx.showToast({
@@ -48,7 +49,7 @@ Page({
           amapId: oneroute.route.amapId,
           origin: oneroute.route.origin,
           terminal: oneroute.route.terminal,
-          firstBus: util.formatBusTime(oneroute.route.firstBus||"--"),
+          firstBus: util.formatBusTime(oneroute.route.firstBus || "--"),
           lastBus: util.formatBusTime(oneroute.route.lastBus || "--"),
           distance: oneroute.route.distance,
           airPrice: oneroute.route.airPrice
@@ -115,7 +116,7 @@ Page({
     wx.showLoading();
     var self = this;
     wx.request({
-      url: "https://publictransit.dtdream.com/v1/bus/getNextBusByRouteStopId?userLng=" + (app.longitude || "") + "&userLat=" + (app.latitude || "") + "&routeId=" + this.routeId + "&stopId=" + this.stopId,
+      url: "https://jbwx.lishewen.com/api/bus/getNextBusByRouteStopId?userLng=" + (app.longitude || "") + "&userLat=" + (app.latitude || "") + "&routeId=" + this.routeId + "&stopId=" + this.stopId + "&direction=" + this.direction,
       success: function (res) {
         wx.hideLoading();
         if (res.data.result != 0) {
@@ -192,7 +193,7 @@ Page({
         } else if (nearBus.targetStopCount == 0) {
           message = "即将到站"
         } else {
-          message = nearBus.targetStopCount + "站/" + nearBus.targetDistance 
+          message = nearBus.targetStopCount + "站/" + nearBus.targetDistance
         }
         message += "-[" + self.data.routeName + "→" + self.stopName + "]";
         wx.setTopBarText({
@@ -221,7 +222,7 @@ Page({
     var self = this;
     var timeList = [5, 10, 20, 30];
     wx.showActionSheet({
-      itemList: timeList.map(function(time) {
+      itemList: timeList.map(function (time) {
         return '' + time + '秒';
       }),
       success: function (res) {
@@ -244,11 +245,8 @@ Page({
   },
 
   changeDirection: function () {
-    if (!this.oppositeId) {
-      return;
-    }
-    this.routeId = this.oppositeId;
-    this.stopId = undefined;
+    this.direction = this.direction == 0 ? 0 : 1;
+    this.stopId = 0;
     this.loadData();
   },
 
@@ -262,7 +260,7 @@ Page({
   },
 
   onHide: function () {
-    
+
   },
 
   /**
