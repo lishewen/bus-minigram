@@ -48,8 +48,8 @@ Page({
           amapId: oneroute.route.amapId,
           origin: oneroute.route.origin,
           terminal: oneroute.route.terminal,
-          firstBus: util.formatBusTime(oneroute.route.firstBus),
-          lastBus: util.formatBusTime(oneroute.route.lastBus),
+          firstBus: util.formatBusTime(oneroute.route.firstBus||"--"),
+          lastBus: util.formatBusTime(oneroute.route.lastBus || "--"),
           distance: oneroute.route.distance,
           airPrice: oneroute.route.airPrice
         })
