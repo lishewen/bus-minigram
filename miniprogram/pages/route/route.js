@@ -245,7 +245,7 @@ Page({
   },
 
   changeDirection: function () {
-    this.direction = this.direction == 0 ? 0 : 1;
+    this.direction = this.direction == 0 ? 1 : 0;
     this.stopId = 0;
     this.loadData();
   },
