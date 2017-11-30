@@ -26,7 +26,7 @@ Page({
   loadData: function () {
     var self = this;
     wx.request({
-      url: "https://publictransit.dtdream.com/v1/bus/getNextBusByStopId?amapStopId=" + this.stopId,
+      url: "https://jbwx.lishewen.com/api/bus/getNextBusByStopId?amapStopId=" + this.stopId,
       success: function (res) {
         if (res.data.result != 0) {
           wx.showToast({
@@ -48,7 +48,7 @@ Page({
         wx.setNavigationBarTitle({
           title: oneitem.stopName
         })
-        
+
         var routes = [];
         for (var h in oneitem.stops) {
           var onestop = oneitem.stops[h];
@@ -62,10 +62,11 @@ Page({
               targetDistance: util.formatDistance(onebus ? onebus.targetDistance : undefined),
               origin: oneroute.route.origin,
               terminal: oneroute.route.terminal,
-              firstBus: util.formatBusTime(oneroute.route.firstBus),
-              lastBus: util.formatBusTime(oneroute.route.lastBus),
+              firstBus: util.formatBusTime(oneroute.route.firstBus || "--"),
+              lastBus: util.formatBusTime(oneroute.route.lastBus || "--"),
               airPrice: oneroute.route.airPrice,
-              routeId: oneroute.route.routeId
+              routeId: oneroute.route.routeId,
+              direction: oneroute.route.direction || 0
             }
             routes.push(item)
           }
