@@ -36,6 +36,9 @@ Page({
         app.latitude = latitude;
         app.longitude = longitude;
 
+        console.log("latitude：" + latitude);
+        console.log("longitude：" + longitude);
+
         wx.request({
           url: "https://jbwx.lishewen.com/api/bus/findNearbyStop?lat=" + latitude + "&lng=" + longitude,
           success: function (res) {
