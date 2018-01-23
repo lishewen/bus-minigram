@@ -52,7 +52,8 @@ Page({
           firstBus: util.formatBusTime(oneroute.route.firstBus || "--"),
           lastBus: util.formatBusTime(oneroute.route.lastBus || "--"),
           distance: oneroute.route.distance,
-          airPrice: oneroute.route.airPrice
+          airPrice: oneroute.route.airPrice,
+          mapflag: oneroute.route.amapId != null
         })
 
         var stopMap = {};
