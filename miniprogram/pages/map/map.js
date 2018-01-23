@@ -46,13 +46,14 @@ Page({
           x: 0.5,
           y: 0.5
         },
-        callout: currentStop == item ? {
-          display: 'ALWAYS',
+        callout: {
+          display: 'BYCLICK',
           content: item.stopName,
           fontSize: "14px",
           borderRadius: 8,
-          padding: "8px"
-        } : undefined
+          padding: "8px",
+          textAlign: 'center'
+        }
       })
     }
     var self = this;
