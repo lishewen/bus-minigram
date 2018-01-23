@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+
   },
 
   /**
@@ -46,7 +46,7 @@ Page({
           x: 0.5,
           y: 0.5
         },
-        callout: currentStop == item? {
+        callout: currentStop == item ? {
           display: 'ALWAYS',
           content: item.stopName,
           fontSize: "14px",
@@ -61,8 +61,9 @@ Page({
       longitude: currentStop.longitude
     })
     this.routeId = options["routeId"];
+    console.log(this.routeId);
     wx.request({
-      url: 'https://restapi.amap.com/v3/bus/lineid?key=248138cabdb96b4743038bcad349b000&output=json&city=%E6%9D%AD%E5%B7%9E&id=' + this.routeId,
+      url: 'https://jbwx.lishewen.com/json/route/' + this.routeId + '.json',
       success: function (res) {
         var busline = res.data.buslines[0];
         if (!busline) {
@@ -106,48 +107,48 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

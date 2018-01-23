@@ -50,7 +50,7 @@
         <view></view>
       </view>
       <text style="margin-top: 15px; color: {{item.userStop ? 'red' : '#434343'}}; alignment: center; width: 20px; writing-mode:tb;">{{item.stopName}}</text>
-       <image wx:if="{{item.metroTrans}}" style="margin-top: 4px; margin-right: 2px; width: 18px; height: 18px;" src="/resources/metro.png"/> 
+      <image wx:if="{{item.metroTrans}}" style="margin-top: 4px; margin-right: 2px; width: 18px; height: 18px;" src="/resources/metro.png" />
     </view>
   </view>
 </scroll-view>
@@ -62,11 +62,11 @@
   <!-- <view class="tabbar-item">
     <image src="/resources/collect.png" bindtap="onCollect" />
     <text>订阅</text>
-  </view>
+  </view>-->
   <view class="tabbar-item" bindtap="openMap" data-route="{{amapId}}" data-stop="{{stopId}}" data-name="{{routeName}}">
-    <image src="/resources/map.png"/>
+    <image src="/resources/map.png" />
     <text>地图</text>
-  </view> -->
+  </view>
   <view class="tabbar-item" bindtap="setInterval">
     <image src="/resources/timer.png" />
     <text>刷新间隔</text>
