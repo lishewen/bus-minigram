@@ -20,15 +20,61 @@ Page({
     })
     var stops = [];
     var currentStop;
+    this.routeId = options["routeId"];
+
+    wx.request({
+      url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
+      success: function (res) {
+        for (var item of res.data) {
+          var size = 21;
+          var iconPath = '/resources/bus.png';
+          stops.push({
+            id: 'bus_' + item.onBoardid,
+            iconPath: iconPath,
+            latitude: item.纬度,
+            longitude: item.经度,
+            color: "#1e82d2FF",
+            fillColor: "#FFFFFFFF",
+            width: size,
+            height: size,
+            anchor: {
+              x: 0.5,
+              y: 0.5
+            },
+            callout: {
+              display: 'BYCLICK',
+              content: item.onBoardid,
+              fontSize: "14px",
+              borderRadius: 8,
+              padding: "8px",
+              textAlign: 'center'
+            }
+          });
+        }
+        self.setData({
+          markers: stops
+        });
+      },
+      fail: function (res) {
+        wx.showToast({
+          image: "/resources/error-network.png",
+          title: '请求失败请重试',
+        })
+      },
+      complete: function () {
+        wx.stopPullDownRefresh()
+      }
+    });
+
     for (var item of app.stops) {
-      var size = 16
-      var iconPath = '/resources/stop.png'
+      var size = 16;
+      var iconPath = '/resources/stop.png';
       if (item == app.stops[0]) {
-        iconPath = '/resources/begin.png'
-        size = 20
+        iconPath = '/resources/begin.png';
+        size = 20;
       } else if (item == app.stops[app.stops.length - 1]) {
-        iconPath = '/resources/end.png'
-        size = 20
+        iconPath = '/resources/end.png';
+        size = 20;
       }
       if (item.stopId == options.stopId) {
         currentStop = item;
@@ -54,15 +100,14 @@ Page({
           padding: "8px",
           textAlign: 'center'
         }
-      })
+      });
     }
     var self = this;
     self.setData({
       latitude: currentStop.latitude,
       longitude: currentStop.longitude
-    })
-    this.routeId = options["routeId"];
-    console.log(this.routeId);
+    });
+
     wx.request({
       url: 'https://jbwx.lishewen.com/json/route/' + this.routeId + '.json',
       success: function (res) {
@@ -85,7 +130,7 @@ Page({
         self.setData({
           polyline: [{
             points: points,
-            color: "#1e82d2FF",
+            color: "#00ff00FF",
             width: 6,
             arrowLine: true
           }],
