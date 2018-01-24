@@ -33,7 +33,7 @@
     <view wx:if="{{buses.length == 1}}">{{stopName}}</view>
   </view>
 </view>
-<scroll-view scroll-left="{{stopScroll}}" scroll-x style="width: 100%; white-space: nowrap; margin-bottom: 56px;">
+<scroll-view scroll-left="{{stopScroll}}" scroll-x class='sv'>
   <view style="display: flex; flex-direction: row;">
     <view wx:for="{{stops}}" class="stop-item" wx:key="{{item.stopId}}" bindtap="changeStop" data-stop="{{item.stopId}}">
       <view style="width: 100%; height: 24px; margin-top: 16px;">

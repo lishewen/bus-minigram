@@ -11,7 +11,10 @@
 }
 
 page {
-  background-color: #efeff4;
+  background-image: url('https://jbwx.lishewen.com/images/mbg.jpg');
+  background-repeat: round;
+  background-attachment: fixed;
+  opacity: 0.9
 }
 
 .route-info {

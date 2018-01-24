@@ -1,12 +1,12 @@
 <!--home.wxml-->
-<view style="background: white; margin-top: 8px;" wx:for="{{stops}}" wx:key="stopName">
-  <navigator url="/pages/stop/stop?stopId={{item.stopId}}&stopName={{item.stopName}}" style="background: #f8fbff; padding: 8px 16px 8px 16px; display: flex; justify-content: space-between;">
-    <text style="color: #4a4a4a; font-size: 14px;">{{item.stopName}}</text>
-    <text style="font-size: 12px;">{{item.userDistance}}</text>
+<view class='bg' wx:for="{{stops}}" wx:key="stopName">
+  <navigator url="/pages/stop/stop?stopId={{item.stopId}}&stopName={{item.stopName}}" class='navstopbg'>
+    <text class='txtstopname'>{{item.stopName}}</text>
+    <!--<text style="font-size: 12px;">{{item.userDistance}}</text>-->
   </navigator>
-  <navigator url="/pages/route/route?routeId={{item.routeId}}&stopId={{item.stopId}}&direction={{item.direction}}" style="padding: 8px 16px 8px 16px;">
-    <view style="display: flex; justify-content: space-between;">
-      <text style="font-size: 18px; color: #4a4a4a;">{{item.routeName}}</text>
+  <navigator url="/pages/route/route?routeId={{item.routeId}}&stopId={{item.stopId}}&direction={{item.direction}}" class='navroute'>
+    <view class='viewroute'>
+      <text class='txtrouteName'>{{item.routeName}}</text>
       <text style="font-size: 14px;">{{item.targetDistance}}</text>
     </view>
     <view style="font-size: 12px; color: #8e8e93; margin-top: 4px;">

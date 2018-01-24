@@ -1,5 +1,12 @@
 /* pages/route/route.wxss */
 
+.sv {
+  background-color: #efeff4;
+  width: 100%;
+  white-space: nowrap;
+  margin-bottom: 56px;
+}
+
 .stop-item {
   display: flex;
   flex-direction: column;
