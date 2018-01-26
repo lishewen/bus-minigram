@@ -35,7 +35,7 @@ Page({
         for (var item of res.data) {
           var iconPath = '/resources/bus.png';
           stops.push({
-            id: 'bus_' + item.onBoardid,
+            id: item.onBoardid,
             iconPath: iconPath,
             latitude: item.纬度,
             longitude: item.经度,
@@ -94,7 +94,7 @@ Page({
         currentStop = item;
       }
       stops.push({
-        id: item.stopId,
+        id: 's_' + item.stopId,
         iconPath: iconPath,
         latitude: item.latitude,
         longitude: item.longitude,
@@ -181,7 +181,7 @@ Page({
       url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
       success: function (res) {
         for (var item of res.data) {
-          self.translateMarker('bus_' + item.onBoardid, item.纬度, item.经度);
+          self.translateMarker(item.onBoardid, item.纬度, item.经度);
         }
       }
     });
