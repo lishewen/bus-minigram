@@ -191,7 +191,8 @@ Page({
     //let mapCtx = wx.createMapContext('map');
     this.mapCtx.translateMarker({
       markerId: markerId,
-      //autoRotate: true,
+      autoRotate: false,
+      rotate: 0,
       duration: 1000,
       destination: {
         latitude: latitude,
