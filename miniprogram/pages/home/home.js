@@ -85,5 +85,17 @@ Page({
   },
   onPullDownRefresh: function () {
     this.reloadData();
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '梧州珍宝 智慧公交',
+      path: '/pages/home/home',
+      success: function (res) {
+        // 转发成功
+      },
+    }
   }
 })

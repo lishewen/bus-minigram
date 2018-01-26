@@ -63,10 +63,10 @@ Page({
         });
 
         if (self.timeout) {
-          clearTimeout(self.timeout)
+          clearInterval(self.timeout)
         }
 
-        self.timeout = setTimeout(self.loadBusData, self.interval * 1000);
+        self.timeout = setInterval(self.loadBusData, self.interval * 1000);
       },
       fail: function (res) {
         wx.showToast({
@@ -187,6 +187,7 @@ Page({
   },
 
   translateMarker: function (markerId, latitude, longitude) {
+    //let mapCtx = wx.createMapContext('map');
     this.mapCtx.translateMarker({
       markerId: markerId,
       //autoRotate: true,
@@ -227,7 +228,7 @@ Page({
    */
   onUnload: function () {
     if (this.timeout) {
-      clearTimeout(this.timeout)
+      clearInterval(this.timeout)
     }
   },
 
@@ -249,6 +250,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '梧州珍宝 智慧公交',
+      path: '/pages/home/home',
+      success: function (res) {
+        // 转发成功
+      },
+    }
   }
 })

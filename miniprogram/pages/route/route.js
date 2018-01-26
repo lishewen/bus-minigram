@@ -210,10 +210,10 @@ Page({
       },
       complete: function () {
         if (self.timeout) {
-          clearTimeout(self.timeout)
+          clearInterval(self.timeout)
         }
-        if (getCurrentPages()[0] == self) {
-          self.timeout = setTimeout(self.loadBusData, self.interval * 1000);
+        if (getCurrentPages().pop() == self) {
+          self.timeout = setInterval(self.loadBusData, self.interval * 1000);
         }
       }
     })
@@ -221,7 +221,7 @@ Page({
 
   setInterval: function (e) {
     var self = this;
-    var timeList = [5, 10, 20, 30];
+    var timeList = [20, 30];
     wx.showActionSheet({
       itemList: timeList.map(function (time) {
         return '' + time + '秒';
@@ -256,7 +256,7 @@ Page({
    */
   onUnload: function () {
     if (this.timeout) {
-      clearTimeout(this.timeout)
+      clearInterval(this.timeout)
     }
   },
 
@@ -288,5 +288,17 @@ Page({
 
   onCollect: function (e) {
 
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '梧州珍宝 智慧公交',
+      path: '/pages/home/home',
+      success: function (res) {
+        // 转发成功
+      },
+    }
   }
 })
