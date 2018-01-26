@@ -15,7 +15,7 @@ Page({
     console.log(e.markerId);
   },
   controltap(e) {
-    if(e.controlId==1)
+    if (e.controlId == 1)
       this.loadBusData();
   },
   /**

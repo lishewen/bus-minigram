@@ -15,6 +15,13 @@
   flex-grow: 0;
 }
 
+.stop-name {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 20px;
+  writing-mode: tb;
+}
+
 .stop-normal {
   width: 4px;
   height: 4px;
