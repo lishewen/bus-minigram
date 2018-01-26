@@ -261,7 +261,9 @@ Page({
   },
 
   onHide: function () {
-
+    if (this.timeout) {
+      clearInterval(this.timeout)
+    }
   },
 
   /**

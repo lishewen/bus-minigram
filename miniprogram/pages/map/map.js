@@ -65,8 +65,9 @@ Page({
         if (self.timeout) {
           clearInterval(self.timeout)
         }
-
-        self.timeout = setInterval(self.loadBusData, self.interval * 1000);
+        if (getCurrentPages().pop() == self) {
+          self.timeout = setInterval(self.loadBusData, self.interval * 1000);
+        }
       },
       fail: function (res) {
         wx.showToast({
