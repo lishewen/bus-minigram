@@ -1,6 +1,6 @@
 // pages/map.js
-
 const app = getApp()
+const util = require('../../utils/util.js')
 
 Page({
 
@@ -10,7 +10,10 @@ Page({
   data: {
 
   },
-
+  interval: util.loadInterval(),
+  markertap(e) {
+    console.log(e.markerId);
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,7 +29,6 @@ Page({
       url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
       success: function (res) {
         for (var item of res.data) {
-          var size = 21;
           var iconPath = '/resources/bus.png';
           stops.push({
             id: 'bus_' + item.onBoardid,
@@ -35,18 +37,19 @@ Page({
             longitude: item.经度,
             color: "#1e82d2FF",
             fillColor: "#FFFFFFFF",
-            width: size,
-            height: size,
+            width: 24,
+            height: 12,
             anchor: {
               x: 0.5,
               y: 0.5
             },
             callout: {
-              display: 'BYCLICK',
+              display: 'ALWAYS',
               content: item.onBoardid,
-              fontSize: "14px",
+              fontSize: 14,
               borderRadius: 8,
-              padding: "8px",
+              padding: 5,
+              bgColor: '#FFF68F',
               textAlign: 'center'
             }
           });
@@ -54,6 +57,12 @@ Page({
         self.setData({
           markers: stops
         });
+
+        if (self.timeout) {
+          clearTimeout(self.timeout)
+        }
+
+        self.timeout = setTimeout(self.loadBusData, self.interval * 1000);
       },
       fail: function (res) {
         wx.showToast({
@@ -93,11 +102,12 @@ Page({
           y: 0.5
         },
         callout: {
-          display: 'BYCLICK',
+          display: item.stopId == options.stopId ? 'ALWAYS' : 'BYCLICK',
           content: item.stopName,
-          fontSize: "14px",
+          fontSize: 14,
           borderRadius: 8,
-          padding: "8px",
+          bgColor: '#FFF68F',
+          padding: 5,
           textAlign: 'center'
         }
       });
@@ -146,6 +156,33 @@ Page({
       complete: function () {
         wx.stopPullDownRefresh()
       }
+    });
+  },
+
+  loadBusData: function () {
+    var self = this;
+    wx.request({
+      url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
+      success: function (res) {
+        for (var item of res.data) {
+          self.translateMarker('bus_' + item.onBoardid, item.纬度, item.经度);
+        }
+      }
+    });
+  },
+
+  translateMarker: function (markerId, latitude, longitude) {
+    this.mapCtx.translateMarker({
+      markerId: markerId,
+      autoRotate: true,
+      duration: 1000,
+      destination: {
+        latitude: latitude,
+        longitude: longitude,
+      },
+      animationEnd() {
+        console.log('animation end');
+      }
     })
   },
 
@@ -153,7 +190,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.mapCtx = wx.createMapContext('map');
   },
 
   /**
@@ -174,7 +211,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    if (this.timeout) {
+      clearTimeout(this.timeout)
+    }
   },
 
   /**
