@@ -165,6 +165,7 @@ Page({
         for (var i in data.nextBuses.buses) {
           var bus = data.nextBuses.buses[i];
           buses.push({
+            busNo: bus.busNo,
             isArrive: bus.isArrive,
             targetStopCount: bus.targetStopCount,
             targetDistance: util.formatDistance(bus.targetDistance)

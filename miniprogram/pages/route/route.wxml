@@ -19,7 +19,7 @@
     <view wx:if="{{buses.length == 0}}" style="color: #929192; font-size: 16px;">
       当前暂无车辆信息
     </view>
-    <view wx:for="{{buses}}" wx:key="*this" class="bus-info">
+    <view wx:for="{{buses}}" wx:key="{{item.busNo}}" class="bus-info">
       <view wx:if="{{item.targetStopCount == 0}}" style="color: #1e82d2; font-size: 20px; margin-right: 4px;">即将到站</view>
       <view wx:if="{{item.targetStopCount > 0}}">
         <text style="color: #1e82d2; font-size: 20px; margin-right: 4px;">{{item.targetStopCount || "--"}}</text>
