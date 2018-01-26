@@ -14,6 +14,10 @@ Page({
   markertap(e) {
     console.log(e.markerId);
   },
+  controltap(e) {
+    if(e.controlId==1)
+      this.loadBusData();
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -144,7 +148,18 @@ Page({
             width: 6,
             arrowLine: true
           }],
-          markers: stops
+          markers: stops,
+          controls: [{
+            id: 1,
+            iconPath: '/resources/refresh.png',
+            position: {
+              left: 0,
+              top: 300 - 50,
+              width: 48,
+              height: 48
+            },
+            clickable: true
+          }]
         })
       },
       fail: function (res) {
@@ -174,7 +189,7 @@ Page({
   translateMarker: function (markerId, latitude, longitude) {
     this.mapCtx.translateMarker({
       markerId: markerId,
-      autoRotate: true,
+      //autoRotate: true,
       duration: 1000,
       destination: {
         latitude: latitude,
