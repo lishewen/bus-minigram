@@ -176,12 +176,22 @@ Page({
   },
 
   loadBusData: function () {
+    wx.showLoading();
     var self = this;
     wx.request({
       url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
       success: function (res) {
         for (var item of res.data) {
           self.translateMarker(item.onBoardid, item.纬度, item.经度);
+        }
+      },
+      complete: function () {
+        wx.hideLoading();
+        if (self.timeout) {
+          clearInterval(self.timeout)
+        }
+        if (getCurrentPages().pop() == self) {
+          self.timeout = setInterval(self.loadBusData, self.interval * 1000);
         }
       }
     });
@@ -215,14 +225,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.loadBusData();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    if (this.timeout) {
+      clearInterval(this.timeout)
+    }
   },
 
   /**
