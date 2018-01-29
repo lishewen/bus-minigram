@@ -94,7 +94,7 @@ Page({
         currentStop = item;
       }
       stops.push({
-        id: 's_' + item.stopId,
+        id: 10000 + item.stopId,
         iconPath: iconPath,
         latitude: item.latitude,
         longitude: item.longitude,
