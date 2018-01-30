@@ -176,6 +176,7 @@ Page({
   },
 
   loadBusData: function () {
+    this.mapCtx = wx.createMapContext('map');
     wx.showLoading();
     var self = this;
     wx.request({
