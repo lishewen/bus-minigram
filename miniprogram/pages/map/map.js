@@ -22,6 +22,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.mapCtx = wx.createMapContext('map');
+
     wx.setNavigationBarTitle({
       title: options.name
     })
@@ -35,7 +37,7 @@ Page({
         for (let item of res.data) {
           let iconPath = '/resources/bus.png';
           stops.push({
-            id: item.onBoardid,
+            id: Number(item.onBoardid),
             iconPath: iconPath,
             latitude: item.纬度,
             longitude: item.经度,
@@ -94,7 +96,7 @@ Page({
         currentStop = item;
       }
       stops.push({
-        id: 10000 + item.stopId,
+        id: Number(10000 + item.stopId),
         iconPath: iconPath,
         latitude: item.latitude,
         longitude: item.longitude,
@@ -176,10 +178,10 @@ Page({
   },
 
   loadBusData: function () {
-    if (!this.mapCtx)
-      this.mapCtx = wx.createMapContext('map');
-      
-    wx.showLoading();
+    //if (!this.mapCtx)
+    //this.mapCtx = wx.createMapContext('map');
+
+    //wx.showLoading();
     var self = this;
     wx.request({
       url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
@@ -189,7 +191,7 @@ Page({
         }
       },
       complete: function () {
-        wx.hideLoading();
+        //wx.hideLoading();
         if (self.timeout) {
           clearInterval(self.timeout)
         }
@@ -203,13 +205,13 @@ Page({
   translateMarker: function (markerId, latitude, longitude) {
     //let mapCtx = wx.createMapContext('map');
     this.mapCtx.translateMarker({
-      markerId: markerId,
+      markerId: Number(markerId),
       autoRotate: false,
       rotate: 0,
       duration: 1000,
       destination: {
-        latitude: latitude,
-        longitude: longitude,
+        latitude: Number(latitude),
+        longitude: Number(longitude),
       },
       animationEnd() {
         console.log('animation end');
