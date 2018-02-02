@@ -187,7 +187,7 @@ Page({
       url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
       success: function (res) {
         for (let m of res.data) {
-          self.translateMarker(m.onBoardid, m.纬度, m.经度);
+          self.moveMarker(m.onBoardid, m.纬度, m.经度);
         }
       },
       complete: function () {
@@ -202,7 +202,7 @@ Page({
     });
   },
 
-  translateMarker: function (markerId, latitude, longitude) {
+  moveMarker: function (markerId, latitude, longitude) {
     //let mapCtx = wx.createMapContext('map');
     this.mapCtx.translateMarker({
       markerId: Number(markerId),
@@ -213,7 +213,10 @@ Page({
         latitude: Number(latitude),
         longitude: Number(longitude),
       },
-      animationEnd() {
+      fail: function (res) {
+        console.log(res);
+      },
+      animationEnd: function () {
         console.log('animation end');
       }
     })
