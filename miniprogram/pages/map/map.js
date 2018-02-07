@@ -105,7 +105,7 @@ Page({
         callout: {
           display: item.stopId == options.stopId ? 'ALWAYS' : 'BYCLICK',
           content: item.stopName,
-          color:'#000000',
+          color: '#000000',
           fontSize: 14,
           borderRadius: 8,
           bgColor: '#FFF68F',
@@ -177,7 +177,7 @@ Page({
     //this.mapCtx = wx.createMapContext('map');
 
     //wx.showLoading();
-    var self = this;
+    let self = this;
     wx.request({
       url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
       success: function (res) {
@@ -205,8 +205,8 @@ Page({
       rotate: 1,
       //duration: 1000,
       destination: {
-        latitude: Number(latitude),
-        longitude: Number(longitude),
+        latitude: parseFloat(latitude),
+        longitude: parseFloat(longitude),
       },
       fail: function (res) {
         console.log(res);
