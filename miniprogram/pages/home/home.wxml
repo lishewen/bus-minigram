@@ -9,7 +9,7 @@
       <text class='txtrouteName'>{{item.routeName}}</text>
       <text style="font-size: 14px;">{{item.targetDistance}}</text>
     </view>
-    <view style="font-size: 12px; color: #8e8e93; margin-top: 4px;">
+    <view class='nextstation'>
       <text>下一站：{{item.nextStation}}</text>
     </view>
   </navigator>

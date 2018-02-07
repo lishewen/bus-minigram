@@ -207,8 +207,8 @@ Page({
     this.mapCtx.translateMarker({
       markerId: Number(markerId),
       autoRotate: false,
-      rotate: 0,
-      duration: 1000,
+      rotate: 1,
+      //duration: 1000,
       destination: {
         latitude: Number(latitude),
         longitude: Number(longitude),
