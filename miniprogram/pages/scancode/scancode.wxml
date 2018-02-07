@@ -1,4 +1,5 @@
 <view style="display: flex; flex-direction: column; align-items: center; justify-content: center; color: #929292; font-size: 14px; padding-tap: 50%; margin-top: -64px; padding-top: 50%;">
   <image style="width: 64px; height: 64px; margin-bottom: 8px;" src="/resources/pay.png" /> 
   <button type="primary" bindtap="scancode"> 单击开始扫码 </button>
+  <button open-type="contact"> 反馈Bug </button>
 </view>
