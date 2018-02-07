@@ -6,7 +6,9 @@ Page({
   data: {
 
   },
+  isLoad: false,
   onLoad: function () {
+    this.isLoad = true;
     this.reloadData();
     // if (app.debug) {
     //   wx.navigateTo({
@@ -70,7 +72,8 @@ Page({
             })
           },
           complete: function () {
-            wx.stopPullDownRefresh()
+            wx.stopPullDownRefresh();
+            self.isLoad = false;
           }
         })
       },
@@ -87,7 +90,8 @@ Page({
     this.reloadData();
   },
   onShow: function () {
-    this.reloadData();
+    if (!this.isLoad)
+      this.reloadData();
   },
   /**
    * 用户点击右上角分享

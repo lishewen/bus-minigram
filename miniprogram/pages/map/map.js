@@ -167,7 +167,7 @@ Page({
         })
       },
       complete: function () {
-        wx.stopPullDownRefresh()
+        wx.stopPullDownRefresh();
       }
     });
   },
