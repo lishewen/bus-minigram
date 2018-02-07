@@ -15,11 +15,20 @@
   flex-grow: 0;
 }
 
-.stop-name {
+.stop_name {
   margin-top: 15px;
   margin-bottom: 15px;
   width: 20px;
   writing-mode: tb;
+}
+
+.userStopname {
+  background: #a4a9b0;
+  height: 6px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .stop-normal {

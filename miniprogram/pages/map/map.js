@@ -11,13 +11,6 @@ Page({
 
   },
   interval: util.loadInterval(),
-  markertap(e) {
-    console.log(e.markerId);
-  },
-  controltap(e) {
-    if (e.controlId == 1)
-      this.loadBusData();
-  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -52,6 +45,7 @@ Page({
             callout: {
               display: 'ALWAYS',
               content: item.onBoardid,
+              color: '#000000',
               fontSize: 14,
               borderRadius: 8,
               padding: 5,
@@ -111,6 +105,7 @@ Page({
         callout: {
           display: item.stopId == options.stopId ? 'ALWAYS' : 'BYCLICK',
           content: item.stopName,
+          color:'#000000',
           fontSize: 14,
           borderRadius: 8,
           bgColor: '#FFF68F',
@@ -267,7 +262,16 @@ Page({
   onReachBottom: function () {
 
   },
-
+  regionchange(e) {
+    console.log(e.type)
+  },
+  markertap(e) {
+    console.log(e.markerId);
+  },
+  controltap(e) {
+    if (e.controlId == 1)
+      this.loadBusData();
+  },
   /**
    * 用户点击右上角分享
    */

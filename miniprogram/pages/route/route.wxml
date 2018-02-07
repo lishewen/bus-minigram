@@ -45,11 +45,11 @@
           <image wx:if="{{item.bus.arrive}}" style="width: 20px; height: 10px; margin-left: -10px;" src="/resources/bus.png" />
         </view>
       </view>
-      <view style="background: #a4a9b0; height: 6px; width: 100%; display: flex; justify-content: center; align-items: center;">
+      <view class='userStopname'>
         <view class="{{item.userStop ? 'stop-user' : 'stop-normal'}}"></view>
         <view></view>
       </view>
-      <text class='stop-name' style="color: {{item.userStop ? 'red' : '#434343'}};">{{item.stopName}}</text>
+      <text class='stop_name' style="color: {{item.userStop ? 'red' : '#434343'}};">{{item.stopName}}</text>
     </view>
   </view>
 </scroll-view>

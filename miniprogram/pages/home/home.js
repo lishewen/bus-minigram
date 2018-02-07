@@ -86,6 +86,9 @@ Page({
   onPullDownRefresh: function () {
     this.reloadData();
   },
+  onShow: function () {
+    this.reloadData();
+  },
   /**
    * 用户点击右上角分享
    */
