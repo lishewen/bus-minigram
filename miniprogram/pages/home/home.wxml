@@ -1,5 +1,5 @@
 <!--home.wxml-->
-<view class='bg' wx:for="{{stops}}" wx:key="stopName">
+<view class='bg' wx:for="{{stops}}" wx:key="stopId">
   <navigator url="/pages/stop/stop?stopId={{item.stopId}}&stopName={{item.stopName}}" class='navstopbg'>
     <text class='txtstopname'>{{item.stopName}}</text>
     <!--<text style="font-size: 12px;">{{item.userDistance}}</text>-->
