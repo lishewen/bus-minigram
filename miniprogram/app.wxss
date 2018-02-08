@@ -43,3 +43,9 @@ page {
   height: 20px;
   margin-bottom: 4px;
 }
+
+.rightarrow {
+  color: #8d8d8d;
+  margin-left: 4px;
+  margin-right: 4px;
+}

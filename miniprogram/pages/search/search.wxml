@@ -10,10 +10,10 @@
 <view wx:if="{{searchRoutes && searchRoutes.length > 0}}">
   <view style="padding: 8px 16px 8px 16px;border-bottom: 1px solid #f2f2f2; font-size: 12px; color: #201e1e">线路</view>
   <navigator url="/pages/route/route?routeId={{item.routeId}}" wx:for="{{searchRoutes}}" bindtap="tapSearchRoute" data-routename="{{item.routeName}}" data-routeid="{{item.routeId}}" wx:key="{{routeId}}" class="search-cell">
-    <text style="font-size: 16px; color: #201e1e">{{item.routeName}}</text>
-    <view style="font-size: 11px; color: #8e8e93;">
+    <text class='routeName'>{{item.routeName}}</text>
+    <view class='origin'>
       <text>{{item.origin}}</text>
-      <text style="color: #8d8d8d; font-size: 10px; margin-left: 4px; margin-right: 4px;">→</text>
+      <text class='rightarrow'>→</text>
       <text>{{item.terminal}}</text>
     </view>
   </navigator>

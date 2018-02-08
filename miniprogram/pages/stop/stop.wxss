@@ -1,1 +1,36 @@
 /* pages/stop/stop.wxss */
+
+.navbg {
+  background: white;
+  margin-top: 8px;
+}
+
+.pad16 {
+  padding: 16px;
+}
+
+.routeitem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.routeName {
+  font-size: 18px;
+  color: #4a4a4a;
+}
+
+.origin {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #434343;
+}
+
+.rightarrow {
+  font-size: 12px;
+}
+
+.nextStation {
+  font-size: 12px;
+  color: #8e8e93;
+  margin-top: 4px;
+}

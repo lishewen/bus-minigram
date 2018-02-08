@@ -54,3 +54,17 @@
   padding-right: 16px;
   justify-content: center;
 }
+
+.routeName {
+  font-size: 16px;
+  color: #201e1e;
+}
+
+.origin {
+  font-size: 11px;
+  color: #8e8e93;
+}
+
+.rightarrow {
+  font-size: 10px;
+}

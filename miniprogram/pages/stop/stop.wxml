@@ -1,16 +1,16 @@
 <!--pages/stop/stop.wxml-->
-<navigator style="background: white; margin-top: 8px;" wx:for="{{routes}}" wx:key="routeName" url="/pages/route/route?routeId={{item.routeId}}&stopId={{item.stopId}}&direction={{item.direction}}">
-  <view style="padding: 16px;">
-    <view style="display: flex; justify-content: space-between;">
-      <text style="font-size: 18px; color: #4a4a4a;">{{item.routeName}}</text>
+<navigator class='navbg' wx:for="{{routes}}" wx:key="routeName" url="/pages/route/route?routeId={{item.routeId}}&stopId={{item.stopId}}&direction={{item.direction}}">
+  <view class='pad16'>
+    <view class='routeitem'>
+      <text class='routeName'>{{item.routeName}}</text>
       <text style="font-size: 14px;">{{item.targetDistance}}</text>
     </view>
-    <view style="margin-top: 8px;font-size: 14px; color: #434343;">
+    <view class='origin'>
       <text>{{item.origin}}</text>
-      <text style="color: #8d8d8d; font-size: 12px; margin-left: 4px; margin-right: 4px;">→</text>
+      <text class='rightarrow'>→</text>
       <text>{{item.terminal}}</text>
     </view>
-    <view style="font-size: 12px; color: #8e8e93; margin-top: 4px;">
+    <view class='nextStation'>
       <text>下一站：{{item.nextStation}}</text>
     </view>
     <view class="route-info">
