@@ -24,13 +24,18 @@
   justify-content: space-between;
 }
 
-.txtrouteName {
-  font-size: 18px;
-  color: #4a4a4a;
-}
-
 .nextstation {
   font-size: 12px;
   color: #8e8e93;
   margin-top: 4px;
+}
+
+.origin {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #434343;
+}
+
+.rightarrow {
+  font-size: 12px;
 }

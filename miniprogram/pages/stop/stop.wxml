@@ -2,7 +2,7 @@
 <navigator class='navbg' wx:for="{{routes}}" wx:key="routeName" url="/pages/route/route?routeId={{item.routeId}}&stopId={{item.stopId}}&direction={{item.direction}}">
   <view class='pad16'>
     <view class='routeitem'>
-      <text class='routeName'>{{item.routeName}}</text>
+      <text class='txtrouteName'>{{item.routeName}}</text>
       <text style="font-size: 14px;">{{item.targetDistance}}</text>
     </view>
     <view class='origin'>

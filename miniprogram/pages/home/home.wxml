@@ -9,11 +9,25 @@
       <text class='txtrouteName'>{{item.routeName}}</text>
       <text style="font-size: 14px;">{{item.targetDistance}}</text>
     </view>
+    <view class='origin'>
+      <text>{{item.origin}}</text>
+      <text class='rightarrow'>→</text>
+      <text>{{item.terminal}}</text>
+    </view>
     <view class='nextstation'>
       <text>下一站：{{item.nextStation}}</text>
     </view>
+    <view class="route-info">
+      <view>
+        <text style="color: #f15a4a">首</text>{{item.firstBus}}
+      </view>
+      <view>
+        <text style="color: #30ab8f">末</text>{{item.lastBus}}
+      </view>
+      <view>票价：{{item.airPrice}}元</view>
+    </view>
   </navigator>
 </view>
-<view wx:if="{{stops.length == 0}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; color: #929292; font-size: 14px; padding-tap: 50%; margin-top: -64px; padding-top: 50%;">
-  <image style="width: 64px; height: 64px; margin-bottom: 8px;" src="/resources/no-bus-stop.png" /> 没有找到附近站点
+<view wx:if="{{stops.length == 0}}" class='noinfo'>
+  <image class='noinfoimg' src="/resources/no-bus-stop.png" /> 没有找到附近站点
 </view>
