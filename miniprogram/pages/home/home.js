@@ -57,7 +57,12 @@ Page({
                 routeId: item.routeId,
                 nextStation: item.nextStation ? item.nextStation : "终点站",
                 targetDistance: util.formatDistance(item.targetDistance || undefined),
-                direction: item.direction
+                direction: item.direction,
+                origin: item.origin,
+                terminal: item.terminal,
+                firstBus: util.formatBusTime(item.firstBus || "--"),
+                lastBus: util.formatBusTime(item.lastBus || "--"),
+                airPrice: item.airPrice
               };
               stops.push(stop)
             }
