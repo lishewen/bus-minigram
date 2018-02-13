@@ -13,31 +13,5 @@
     "navigationBarTitleText": "梧州公交",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#efeff4"
-  },
-  "tabBar": {
-    "color": "#929292",
-    "selectedColor": "#1e82d2",
-    "borderStyle": "black",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/home/home",
-        "iconPath": "resources/home.png",
-        "selectedIconPath": "resources/home-sel.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/search/search",
-        "iconPath": "resources/search.png",
-        "selectedIconPath": "resources/search-sel.png",
-        "text": "搜索"
-      },
-      {
-        "pagePath": "pages/scancode/scancode",
-        "iconPath": "resources/pay.png",
-        "selectedIconPath": "resources/search-sel.png",
-        "text": "扫码"
-      }
-    ]
   }
 }
