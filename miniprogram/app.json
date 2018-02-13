@@ -3,7 +3,6 @@
     "pages/home/home",
     "pages/stop/stop",
     "pages/route/route",
-    "pages/search/search",
     "pages/map/map",
     "pages/scancode/scancode"
   ],

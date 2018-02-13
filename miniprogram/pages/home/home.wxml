@@ -8,7 +8,7 @@
   <text class="search-cancel" bindtap="tapCancel" style="display: {{focused ? '' : 'none'}};">取消</text>
 </view>
 <view wx:if="{{searchRoutes && searchRoutes.length > 0}}">
-  <view style="padding: 8px 16px 8px 16px;border-bottom: 1px solid #f2f2f2; font-size: 12px; color: #201e1e">线路</view>
+  <view class='search-title navstopbg'>线路</view>
   <navigator url="/pages/route/route?routeId={{item.routeId}}" wx:for="{{searchRoutes}}" bindtap="tapSearchRoute" data-routename="{{item.routeName}}" data-routeid="{{item.routeId}}" wx:key="{{routeId}}" class="search-cell">
     <text class='routeName'>{{item.routeName}}</text>
     <view class='origin'>
@@ -22,7 +22,7 @@
   </view>
 </view>
 <view wx:if="{{searchStops && searchStops.length > 0}}">
-  <view style="padding: 8px 16px 8px 16px;border-bottom: 1px solid #f2f2f2; font-size: 12px; color: #201e1e">站点</view>
+  <view class='search-title navstopbg'>站点</view>
   <navigator url="/pages/stop/stop?stopId={{item.stopId}}&stopName={{item.stopName}}" wx:for="{{searchStops}}" wx:key="{{routeId}}" class="search-cell" bindtap="tapSearchStop" data-stopname="{{item.stopName}}" data-stopid="{{item.stopid}}">
     <text class='routeName'>{{item.stopName}}</text>
   </navigator>
