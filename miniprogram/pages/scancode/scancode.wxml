@@ -1,5 +1,0 @@
-<view class='noinfo'>
-  <image class='noinfoimg' src="/resources/pay.png" /> 
-  <button type="primary" bindtap="scancode"> 单击开始扫码 </button>
-  <button open-type="contact"> 反馈Bug </button>
-</view>

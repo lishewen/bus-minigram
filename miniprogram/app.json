@@ -1,10 +1,9 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/stop/stop",
-    "pages/route/route",
     "pages/map/map",
-    "pages/scancode/scancode"
+    "pages/stop/stop",
+    "pages/route/route"
   ],
   "window": {
     "backgroundTextStyle": "dark",
