@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.mapCtx = wx.createMapContext('map');
+    //this.mapCtx = wx.createMapContext('map');
 
     wx.setNavigationBarTitle({
       title: options.name
@@ -249,19 +249,6 @@ Page({
     }
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
   regionchange(e) {
     console.log(e.type)
   },
