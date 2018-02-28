@@ -242,7 +242,7 @@ Page({
         console.log('animation end:' + markerId);
         self.flag = false;
       }
-    })
+    });
   },
 
   /**
