@@ -22,62 +22,13 @@ Page({
 
     wx.setNavigationBarTitle({
       title: options.name
-    })
-    var stops = [];
+    });
+
+    var self = this;
+    let stops = [];
+    let mbuses = [];
     var currentStop;
     this.routeId = options["routeId"];
-
-    wx.request({
-      url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
-      success: function (res) {
-        for (let item of res.data) {
-          let iconPath = '/resources/bus.png';
-          stops.push({
-            id: Number(item.onBoardid),
-            iconPath: iconPath,
-            latitude: item.纬度,
-            longitude: item.经度,
-            color: "#1e82d2FF",
-            fillColor: "#FFFFFFFF",
-            width: 24,
-            height: 12,
-            anchor: {
-              x: 0.5,
-              y: 0.5
-            },
-            callout: {
-              display: 'ALWAYS',
-              content: item.onBoardid,
-              color: '#000000',
-              fontSize: 14,
-              borderRadius: 8,
-              padding: 5,
-              bgColor: '#FFF68F',
-              textAlign: 'center'
-            }
-          });
-        }
-        self.setData({
-          markers: stops
-        });
-
-        if (self.timeout) {
-          clearInterval(self.timeout)
-        }
-        if (getCurrentPages().pop() == self) {
-          self.timeout = setInterval(self.loadBusData, self.interval * 1000);
-        }
-      },
-      fail: function (res) {
-        wx.showToast({
-          image: "/resources/error-network.png",
-          title: '请求失败请重试',
-        })
-      },
-      complete: function () {
-        wx.stopPullDownRefresh()
-      }
-    });
 
     for (let item of app.stops) {
       let size = 16;
@@ -117,10 +68,53 @@ Page({
         }
       });
     }
-    var self = this;
-    self.setData({
-      latitude: currentStop.latitude,
-      longitude: currentStop.longitude
+
+    wx.request({
+      url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
+      success: function (res) {
+        for (let item of res.data) {
+          let iconPath = '/resources/bus.png';
+          mbuses.push({
+            id: Number(item.onBoardid),
+            iconPath: iconPath,
+            latitude: item.纬度,
+            longitude: item.经度,
+            color: "#1e82d2FF",
+            fillColor: "#FFFFFFFF",
+            width: 24,
+            height: 12,
+            anchor: {
+              x: 0.5,
+              y: 0.5
+            },
+            callout: {
+              display: 'ALWAYS',
+              content: item.onBoardid,
+              color: '#000000',
+              fontSize: 14,
+              borderRadius: 8,
+              padding: 5,
+              bgColor: '#FFF68F',
+              textAlign: 'center'
+            }
+          });
+        }
+
+        self.setData({
+          markers: mbuses.concat(stops),
+          latitude: currentStop.latitude,
+          longitude: currentStop.longitude
+        });
+      },
+      fail: function (res) {
+        wx.showToast({
+          image: "/resources/error-network.png",
+          title: '请求失败请重试',
+        })
+      },
+      complete: function () {
+        //wx.stopPullDownRefresh()
+      }
     });
 
     wx.request({
@@ -149,7 +143,6 @@ Page({
             width: 6,
             arrowLine: true
           }],
-          markers: stops,
           controls: [{
             id: 1,
             iconPath: '/resources/refresh.png',
@@ -161,7 +154,7 @@ Page({
             },
             clickable: true
           }]
-        })
+        });
       },
       fail: function (res) {
         wx.showToast({
@@ -170,7 +163,14 @@ Page({
         })
       },
       complete: function () {
-        wx.stopPullDownRefresh();
+        //wx.stopPullDownRefresh();
+
+        if (self.timeout) {
+          clearInterval(self.timeout)
+        }
+        if (getCurrentPages().pop() == self) {
+          self.timeout = setInterval(self.loadBusData, self.interval * 1000);
+        }
       }
     });
   },
@@ -180,7 +180,7 @@ Page({
     //this.mapCtx = wx.createMapContext('map');
     let self = this;
 
-    console.log('loadBusData:' + self.mapCtx);
+    console.log('loadBusData');
 
     if (!self.mapCtx || self.mapCtx == "undefined") {
       //console.log(true);
@@ -198,7 +198,24 @@ Page({
       url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
       success: function (res) {
         for (let m of res.data) {
-          self.moveMarker(m.onBoardid, m.纬度, m.经度);
+          //self.moveMarker(m.onBoardid, m.纬度, m.经度);
+          self.mapCtx.translateMarker({
+            markerId: Number(m.onBoardid),
+            autoRotate: false,
+            rotate: 1,
+            duration: 1000,
+            destination: {
+              latitude: parseFloat(m.纬度),
+              longitude: parseFloat(m.经度),
+            },
+            fail: function (res) {
+              console.log(res);
+            },
+            animationEnd: function () {
+              console.log('animation end:' + m.onBoardid);
+              //self.flag = false;
+            }
+          });
         }
       },
       complete: function () {
@@ -213,7 +230,7 @@ Page({
     });
   },
 
-  moveMarker: function (markerId, latitude, longitude) {
+  /*moveMarker: function (markerId, latitude, longitude) {
     let self = this;
     if (self.flag)
       return;
@@ -243,7 +260,7 @@ Page({
         self.flag = false;
       }
     });
-  },
+  },*/
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -279,7 +296,7 @@ Page({
   },
 
   regionchange(e) {
-    this.loadBusData();
+    //this.loadBusData();
   },
   markertap(e) {
     console.log(e.markerId);
