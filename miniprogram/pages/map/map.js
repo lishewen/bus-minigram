@@ -11,11 +11,14 @@ Page({
 
   },
   interval: util.loadInterval(),
+  flag: false,
+  //mapCtx,
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //this.mapCtx = wx.createMapContext('map');
+    if (!this.mapCtx || this.mapCtx == "undefined")
+      this.mapCtx = wx.createMapContext('map');
 
     wx.setNavigationBarTitle({
       title: options.name
@@ -175,9 +178,22 @@ Page({
   loadBusData: function () {
     //if (!this.mapCtx)
     //this.mapCtx = wx.createMapContext('map');
+    let self = this;
+
+    console.log('loadBusData:' + self.mapCtx);
+
+    if (!self.mapCtx || self.mapCtx == "undefined") {
+      //console.log(true);
+      if (self.timeout) {
+        clearInterval(self.timeout)
+      }
+      if (getCurrentPages().pop() == self) {
+        self.timeout = setInterval(self.loadBusData, self.interval * 1000);
+      }
+      return;
+    }
 
     //wx.showLoading();
-    let self = this;
     wx.request({
       url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
       success: function (res) {
@@ -198,12 +214,23 @@ Page({
   },
 
   moveMarker: function (markerId, latitude, longitude) {
+    let self = this;
+    if (self.flag)
+      return;
+
+    console.log('moveMarker:' + markerId);
+
+    if (!self.mapCtx || self.mapCtx == "undefined") {
+      return;
+    }
+    
+    self.flag = true;
     //let mapCtx = wx.createMapContext('map');
-    this.mapCtx.translateMarker({
+    self.mapCtx.translateMarker({
       markerId: Number(markerId),
       autoRotate: false,
       rotate: 1,
-      //duration: 1000,
+      duration: 1000,
       destination: {
         latitude: parseFloat(latitude),
         longitude: parseFloat(longitude),
@@ -212,7 +239,8 @@ Page({
         console.log(res);
       },
       animationEnd: function () {
-        console.log('animation end');
+        console.log('animation end:' + markerId);
+        self.flag = false;
       }
     })
   },
@@ -221,6 +249,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    //console.log(this.mapCtx);
     this.mapCtx = wx.createMapContext('map');
   },
 
@@ -250,7 +279,7 @@ Page({
   },
 
   regionchange(e) {
-    console.log(e.type)
+    this.loadBusData();
   },
   markertap(e) {
     console.log(e.markerId);
