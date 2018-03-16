@@ -12,6 +12,7 @@ Page({
   },
   interval: util.loadInterval(),
   flag: false,
+  isLoad: true,
   //mapCtx,
   /**
    * 生命周期函数--监听页面加载
@@ -114,6 +115,7 @@ Page({
       },
       complete: function () {
         //wx.stopPullDownRefresh()
+        self.isLoad = false;
       }
     });
 
@@ -164,6 +166,7 @@ Page({
       },
       complete: function () {
         //wx.stopPullDownRefresh();
+        self.isLoad = false;
 
         if (self.timeout) {
           clearInterval(self.timeout)
@@ -179,6 +182,9 @@ Page({
     //if (!this.mapCtx)
     //this.mapCtx = wx.createMapContext('map');
     let self = this;
+
+    if (self.isLoad)
+      return;
 
     console.log('loadBusData');
 
@@ -302,8 +308,15 @@ Page({
     console.log(e.markerId);
   },
   controltap(e) {
-    if (e.controlId == 1)
+    if (e.controlId == 1) {
+      if (this.isLoad) {
+        wx.showToast({
+          title: '正在加载中。。。',
+        });
+        return;
+      }
       this.loadBusData();
+    }
   },
   /**
    * 用户点击右上角分享

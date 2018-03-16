@@ -277,7 +277,7 @@ Page({
   openMap: function (e) {
     app.stops = this.data.stops
     var ds = e.currentTarget.dataset
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/map/map?routeId=' + ds.route + '&name=' + ds.name + '&stopId=' + ds.stop
     })
   },
