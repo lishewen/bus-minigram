@@ -33,7 +33,10 @@ function formatDistance(dist) {
     if (dist > 1000) {
       return Math.round(dist / 100) / 10 + "公里";
     } else {
-      return dist + "米";
+      if (dist == 1)
+        return "即将到站";
+      else
+        return dist + "米";
     }
   } else {
     return "暂无";
