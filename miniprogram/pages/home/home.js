@@ -4,7 +4,51 @@ const app = getApp()
 
 Page({
   data: {
-    focused: false
+    focused: false,
+    bgtype: 2
+  },
+  bgBtn: function () {
+    switch (this.data.bgtype) {
+      //默认蓝
+      case 1:
+        wx.setNavigationBarColor({
+          frontColor: "#ffffff",
+          backgroundColor: "#1E82D2"
+        });
+        this.data.bgtype++;
+        break;
+      //姨妈红
+      case 2:
+        wx.setNavigationBarColor({
+          frontColor: "#ffffff",
+          backgroundColor: "#ff0304"
+        });
+        this.data.bgtype++;
+        break;
+      //珍宝黄
+      case 3:
+        wx.setNavigationBarColor({
+          frontColor: "#000000",
+          backgroundColor: "#FFED8F"
+        });
+        this.data.bgtype++;
+        break;
+      //原谅色
+      case 4:
+        wx.setNavigationBarColor({
+          frontColor: "#ffffff",
+          backgroundColor: "#56C83C"
+        });
+        this.data.bgtype++;
+        break;
+      default:
+        wx.setNavigationBarColor({
+          frontColor: "#ffffff",
+          backgroundColor: "#1E82D2"
+        });
+        this.data.bgtype = 1;
+        break;
+    }
   },
   searchFocus: function () {
     this.setData({

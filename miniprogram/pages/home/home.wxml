@@ -1,5 +1,6 @@
 <!--home.wxml-->
 <view class="search-bar">
+  <icon size="14" class="search-icon" type="info" bindtap="bgBtn" />
   <view class="search-inner">
     <icon size="12" class="search-icon" type="search" />
     <input class="search-input" focus="{{focused}}" bindfocus="searchFocus" bindconfirm="searchConfirm" placeholder="搜索线路/站点" bindinput="searchInput" placeholder-class="search-hint" confirm-type="search" value="{{searchText}}" />
