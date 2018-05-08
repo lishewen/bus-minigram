@@ -11,5 +11,11 @@
     "navigationBarTitleText": "梧州公交",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#efeff4"
-  }
+  },
+  "widgets": [
+    {
+      "type": "search",
+      "path": "searchWidget"
+    }
+  ]
 }

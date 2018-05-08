@@ -1,0 +1,20 @@
+<view class="share-container">
+  <view class="share-info">
+    <text class="share-name">{{name}}</text>
+    <text class="share-code">({{code}})</text>
+  </view>
+  <text class="share-datetime">{{dateTime}}</text>
+  <view class="share-price">
+    <text class="{{'share-price-text ' + (gains < 0 ? 'share-loss' : 'share-gain')}}">{{price}}</text>
+    <text class="{{'share-price-unit ' + (gains < 0 ? 'share-loss' : 'share-gain')}}">{{unit}}</text>
+    <image class="share-arrow" src="./images/down.png"></image>
+  </view>
+  <view class="share-detail">
+    <text>涨跌额:</text>
+    <text class="{{'share-detail-price ' + (gains < 0 ? 'share-loss' : 'share-gain')}}">{{gains}}</text>
+    <text class="share-detail-title">涨跌幅:</text>
+    <text class="{{'share-detail-price ' + (gains < 0 ? 'share-loss' : 'share-gain')}}">{{gainsPercent}}%</text>
+    <text class="share-detail-title">市值:</text>
+    <text class="{{(gains < 0 ? 'share-loss' : 'share-gain')}}">3.13万亿</text>
+  </view>
+</view>
