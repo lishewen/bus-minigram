@@ -71,7 +71,7 @@ Page({
     }
 
     wx.request({
-      url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
+      url: app.baseurl + "/api/bus/GetBusMap?amapId=" + this.routeId,
       success: function (res) {
         for (let item of res.data) {
           let iconPath = '/resources/bus.png';
@@ -120,7 +120,7 @@ Page({
     });
 
     wx.request({
-      url: 'https://jbwx.lishewen.com/json/route/' + this.routeId + '.json',
+      url: app.baseurl + '/json/route/' + this.routeId + '.json',
       success: function (res) {
         var busline = res.data.buslines[0];
         if (!busline) {
@@ -201,7 +201,7 @@ Page({
 
     //wx.showLoading();
     wx.request({
-      url: "https://jbwx.lishewen.com/api/bus/GetBusMap?amapId=" + this.routeId,
+      url: app.baseurl + "/api/bus/GetBusMap?amapId=" + this.routeId,
       success: function (res) {
         for (let m of res.data) {
           //self.moveMarker(m.onBoardid, m.纬度, m.经度);

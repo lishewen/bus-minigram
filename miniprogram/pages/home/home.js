@@ -105,7 +105,7 @@ Page({
     var self = this;
     let foldCount = 4;
     wx.request({
-      url: "https://jbwx.lishewen.com/api/bus/findRouteByName?routeName=" + encodeURIComponent(word),
+      url: app.baseurl + "/api/bus/findRouteByName?routeName=" + encodeURIComponent(word),
       success: function (res) {
         if (res.data.result != 0) {
           wx.showToast({
@@ -138,7 +138,7 @@ Page({
     })
 
     wx.request({
-      url: "https://jbwx.lishewen.com/api/bus/findStopByName?stopName=" + encodeURIComponent(word),
+      url: app.baseurl + "/api/bus/findStopByName?stopName=" + encodeURIComponent(word),
       success: function (res) {
         if (res.data.result != 0) {
           wx.showToast({
@@ -234,7 +234,7 @@ Page({
         console.log("longitude：" + longitude);
 
         wx.request({
-          url: "https://jbwx.lishewen.com/api/bus/findNearbyStop?lat=" + latitude + "&lng=" + longitude,
+          url: app.baseurl + "/api/bus/findNearbyStop?lat=" + latitude + "&lng=" + longitude,
           success: function (res) {
             var stops = [];
             for (var i in res.data) {

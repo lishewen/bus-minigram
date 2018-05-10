@@ -26,7 +26,7 @@ Page({
   loadData: function () {
     var self = this;
     wx.request({
-      url: "https://jbwx.lishewen.com/api/bus/getNextBusByStopId?amapStopId=" + this.stopId,
+      url: app.baseurl + "/api/bus/getNextBusByStopId?amapStopId=" + this.stopId,
       success: function (res) {
         if (res.data.result != 0) {
           wx.showToast({

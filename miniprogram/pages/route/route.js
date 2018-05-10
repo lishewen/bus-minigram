@@ -28,7 +28,7 @@ Page({
     wx.showLoading();
     var self = this;
     wx.request({
-      url: "https://jbwx.lishewen.com/api/bus/getBusPositionByRouteId?userLng=" + (app.longitude || "") + "&userLat=" + (app.latitude || "") + "&routeId=" + this.routeId + "&direction=" + this.direction,
+      url: app.baseurl + "/api/bus/getBusPositionByRouteId?userLng=" + (app.longitude || "") + "&userLat=" + (app.latitude || "") + "&routeId=" + this.routeId + "&direction=" + this.direction,
       success: function (res) {
         if (res.data.result != 0) {
           wx.showToast({
@@ -117,7 +117,7 @@ Page({
     wx.showLoading();
     var self = this;
     wx.request({
-      url: "https://jbwx.lishewen.com/api/bus/getNextBusByRouteStopId?userLng=" + (app.longitude || "") + "&userLat=" + (app.latitude || "") + "&routeId=" + this.routeId + "&stopId=" + this.stopId + "&direction=" + this.direction,
+      url: app.baseurl + "/api/bus/getNextBusByRouteStopId?userLng=" + (app.longitude || "") + "&userLat=" + (app.latitude || "") + "&routeId=" + this.routeId + "&stopId=" + this.stopId + "&direction=" + this.direction,
       success: function (res) {
         wx.hideLoading();
         if (res.data.result != 0) {
