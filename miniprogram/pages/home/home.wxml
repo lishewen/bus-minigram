@@ -17,7 +17,7 @@
 </view>
 <view wx:if="{{searchRoutes && searchRoutes.length > 0}}">
   <view class='search-title navstopbg'>线路</view>
-  <navigator url="/pages/route/route?routeId={{item.routeId}}&direction={{direction}}" wx:for="{{searchRoutes}}" bindtap="tapSearchRoute" data-routename="{{item.routeName}}" data-routeid="{{item.routeId}}" data-direction='{{direction}}' wx:key="{{routeId}}" class="search-cell">
+  <navigator url="/pages/route/route?routeId={{item.routeId}}&direction={{item.direction}}" wx:for="{{searchRoutes}}" bindtap="tapSearchRoute" data-routename="{{item.routeName}}" data-routeid="{{item.routeId}}" data-direction='{{item.direction}}' wx:key="{{routeId}}" class="search-cell">
     <text class='routeName'>{{item.routeName}}</text>
     <view class='origin'>
       <text>{{item.origin}}</text>
