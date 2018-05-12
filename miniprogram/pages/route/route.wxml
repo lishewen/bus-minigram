@@ -49,7 +49,7 @@
         <view class="{{item.userStop ? 'stop-user' : 'stop-normal'}}"></view>
         <view></view>
       </view>
-      <text class='stop_name' style="color: {{item.userStop ? 'red' : '#434343'}};">{{item.stopName}}</text>
+      <text class="stop_name {{item.userStop ? 'userStopRed' : 'userStopNormal'}}">{{item.stopName}}</text>
     </view>
   </view>
 </scroll-view>

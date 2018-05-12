@@ -24,11 +24,20 @@
 
 .userStopname {
   background: #a4a9b0;
-  height: 6px;
+  height: 15px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.userStopRed {
+  color: red;
+  font-weight: bold;
+}
+
+.userStopNormal {
+  color: #434343;
 }
 
 .stop-normal {
