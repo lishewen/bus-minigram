@@ -46,7 +46,10 @@
         </view>
       </view>
       <view class='userStopname'>
-        <view class="{{item.userStop ? 'stop-user' : 'stop-normal'}}"></view>
+        <view>
+          <image class="stop-user" src="" wx:if="{{item.userStop}}" />
+          <image class="stop-normal" src="/resources/char-more.png" wx:if="{{!item.userStop}}" />
+        </view>
         <view></view>
       </view>
       <text class="stop_name {{item.userStop ? 'userStopRed' : 'userStopNormal'}}">{{item.stopName}}</text>
