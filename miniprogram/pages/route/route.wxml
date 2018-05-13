@@ -56,6 +56,13 @@
     </view>
   </view>
 </scroll-view>
+<swiper indicator-dots="true" autoplay="true">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper>
 <!--<view>
   <image src='/resources/ad.jpg' style='width:100%;height:200px' />
 </view>-->

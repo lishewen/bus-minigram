@@ -77,3 +77,14 @@
   flex-grow: 1;
   text-align: center;
 }
+
+swiper {
+  height: 300rpx;
+  margin: 8px 0;
+  bottom: 0;
+}
+
+swiper-item image {
+  width: 100%;
+  height: 100%;
+}
