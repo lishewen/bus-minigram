@@ -4,11 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
+    images: [],
     focused: false,
     bgtype: 2
   },
@@ -200,7 +196,26 @@ Page({
   },
   isLoad: false,
   onLoad: function () {
-    this.isLoad = true;
+    var self = this;
+    self.isLoad = true;
+    wx.request({
+      url: app.baseurl + '/api/ui/gethomeposter',
+      success: function (res) {
+        self.setData({
+          images: res.data
+        });
+      },
+      fail: function () {
+        wx.showToast({
+          image: "/resources/error-network.png",
+          title: '请求失败请重试',
+        });
+      },
+      complete: function () {
+        wx.stopPullDownRefresh();
+        self.isLoad = false;
+      }
+    });
     this.reloadData();
     // if (app.debug) {
     //   wx.navigateTo({
@@ -210,7 +225,7 @@ Page({
     // }
   },
   reloadData: function () {
-    var self = this
+    var self = this;
     wx.getLocation({
       type: 'wgs84',//'gcj02', //返回可以用于wx.openLocation的经纬度
       success: function (res) {
@@ -266,7 +281,7 @@ Page({
             wx.showToast({
               image: "/resources/error-network.png",
               title: '请求失败请重试',
-            })
+            });
           },
           complete: function () {
             wx.stopPullDownRefresh();
