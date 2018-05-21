@@ -7,10 +7,10 @@
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#1e82d2",
+    "navigationBarBackgroundColor": "#FFED8F",
     "navigationBarTitleText": "梧州公交",
-    "navigationBarTextStyle": "white",
-    "backgroundColor": "#efeff4"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFED8F"
   },
   "widgets": [
     {
