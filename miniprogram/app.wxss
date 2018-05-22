@@ -11,7 +11,7 @@
 }
 
 page {
-  background-color: #FFED8F;
+  background-color: #49a9ee;
   background-repeat: round;
   background-attachment: fixed;
   opacity: 0.9;
