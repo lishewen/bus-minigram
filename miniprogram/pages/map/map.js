@@ -74,7 +74,7 @@ Page({
       url: app.baseurl + "/api/bus/GetBusMap?amapId=" + this.routeId,
       success: function (res) {
         for (let item of res.data) {
-          let iconPath = '/resources/bus.png';
+          let iconPath = '/resources/bus_r.png';
           mbuses.push({
             id: Number(item.onBoardid),
             iconPath: iconPath,
