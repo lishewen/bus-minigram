@@ -6,7 +6,8 @@ Page({
   data: {
     images: [],
     focused: false,
-    bgtype: 2
+    bgtype: 2,
+    iswork: app.globalData.iswork
   },
   bgBtn: function () {
     switch (this.data.bgtype) {

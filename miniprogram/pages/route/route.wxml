@@ -56,7 +56,7 @@
     </view>
   </view>
 </scroll-view>
-<swiper indicator-dots="true" autoplay="true">
+<swiper indicator-dots="true" autoplay="true" wx:if="{{!iswork}}">
   <block wx:for="{{images}}" wx:key="item.id">
     <swiper-item>
       <image src="https://images.wzjbbus.com/upload/{{item.picUrl}}" class="slide-image" />

@@ -9,6 +9,7 @@ Page({
    */
   data: {
     images: [],
+    iswork: app.globalData.iswork
   },
   interval: util.loadInterval(),
   /**
