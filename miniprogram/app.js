@@ -8,14 +8,11 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs);
     //指示时候为企业微信
-    wx.getSystemInfo({
-      success: function (res) {
-        console.log(res.environment)
-        if (res.environment == 'wxwork') {
-          this.globalData.iswork = true;
-        }
-      }
-    })
+    var systemres = wx.getSystemInfoSync();
+    console.log(systemres.environment)
+    if (systemres.environment == 'wxwork') {
+      this.globalData.iswork = true;
+    }
     // 登录
     wx.login({
       success: res => {
