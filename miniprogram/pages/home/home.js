@@ -7,9 +7,10 @@ Page({
     images: [],
     focused: false,
     bgtype: 2,
-    iswork: app.globalData.iswork
+    iswork: app.globalData.iswork,
+    isnotsupportversion: app.globalData.isnotsupportversion
   },
-  bgBtn: function () {
+  bgBtn: function() {
     switch (this.data.bgtype) {
       //默认蓝
       case 1:
@@ -19,7 +20,7 @@ Page({
         });
         this.data.bgtype++;
         break;
-      //姨妈红
+        //姨妈红
       case 2:
         wx.setNavigationBarColor({
           frontColor: "#ffffff",
@@ -27,7 +28,7 @@ Page({
         });
         this.data.bgtype++;
         break;
-      //珍宝黄
+        //珍宝黄
       case 3:
         wx.setNavigationBarColor({
           frontColor: "#000000",
@@ -35,7 +36,7 @@ Page({
         });
         this.data.bgtype++;
         break;
-      //原谅色
+        //原谅色
       case 4:
         wx.setNavigationBarColor({
           frontColor: "#ffffff",
@@ -52,13 +53,13 @@ Page({
         break;
     }
   },
-  searchFocus: function () {
+  searchFocus: function() {
     this.setData({
       focused: true
     })
     this.searchInit();
   },
-  tapCancel: function () {
+  tapCancel: function() {
     this.routes = null;
     this.stops = null;
     this.setData({
@@ -69,21 +70,21 @@ Page({
       searchRoutes: null
     })
   },
-  searchConfirm: function (event) {
+  searchConfirm: function(event) {
     var searchText = event.detail.value;
     this.setData({
       searchText: searchText
     })
     this.search(searchText)
   },
-  searchInput: function (event) {
+  searchInput: function(event) {
     var searchText = event.detail.value;
     this.setData({
       searchText: searchText
     })
     this.search(searchText)
   },
-  searchClear: function (event) {
+  searchClear: function(event) {
     this.setData({
       focused: true,
       searchText: '',
@@ -92,18 +93,18 @@ Page({
     })
     this.searchInit();
   },
-  searchInit: function () {
+  searchInit: function() {
     var history = util.loadHistory();
     this.setData({
       history: history ? history : []
     })
   },
-  search: function (word) {
+  search: function(word) {
     var self = this;
     let foldCount = 4;
     wx.request({
       url: app.baseurl + "/api/bus/findRouteByName?routeName=" + encodeURIComponent(word),
-      success: function (res) {
+      success: function(res) {
         if (res.data.result != 0) {
           wx.showToast({
             image: "/resources/error-empty.png",
@@ -123,20 +124,20 @@ Page({
           routeFold: routes.length > foldCount
         })
       },
-      fail: function () {
+      fail: function() {
         wx.showToast({
           image: "/resources/error-network.png",
           title: '请求失败请重试',
         })
       },
-      complete: function () {
+      complete: function() {
         wx.stopPullDownRefresh()
       }
     })
 
     wx.request({
       url: app.baseurl + "/api/bus/findStopByName?stopName=" + encodeURIComponent(word),
-      success: function (res) {
+      success: function(res) {
         if (res.data.result != 0) {
           wx.showToast({
             image: "/resources/error-empty.png",
@@ -156,30 +157,30 @@ Page({
           stopFold: stops.length > foldCount
         })
       },
-      fail: function () {
+      fail: function() {
         wx.showToast({
           image: "/resources/error-network.png",
           title: '请求失败请重试',
         })
       },
-      complete: function () {
+      complete: function() {
         wx.stopPullDownRefresh()
       }
     })
   },
-  routeMore: function () {
+  routeMore: function() {
     this.setData({
       searchRoutes: this.routes,
       routeFold: false
     })
   },
-  stopMore: function () {
+  stopMore: function() {
     this.setData({
       searchStops: this.stops,
       stopFold: false
     })
   },
-  tapSearchRoute: function (e) {
+  tapSearchRoute: function(e) {
     var ds = e.currentTarget.dataset;
     util.saveHistory({
       type: "route",
@@ -187,7 +188,7 @@ Page({
       routeName: ds.routename
     })
   },
-  tapSearchStop: function (e) {
+  tapSearchStop: function(e) {
     var ds = e.currentTarget.dataset;
     util.saveHistory({
       type: "stop",
@@ -196,23 +197,23 @@ Page({
     })
   },
   isLoad: false,
-  onLoad: function () {
+  onLoad: function() {
     var self = this;
     self.isLoad = true;
     wx.request({
       url: app.baseurl + '/api/ui/gethomeposter',
-      success: function (res) {
+      success: function(res) {
         self.setData({
           images: res.data
         });
       },
-      fail: function () {
+      fail: function() {
         wx.showToast({
           image: "/resources/error-network.png",
           title: '请求失败请重试',
         });
       },
-      complete: function () {
+      complete: function() {
         wx.stopPullDownRefresh();
         self.isLoad = false;
       }
@@ -225,11 +226,11 @@ Page({
     //   })
     // }
   },
-  reloadData: function () {
+  reloadData: function() {
     var self = this;
     wx.getLocation({
-      type: 'wgs84',//'gcj02', //返回可以用于wx.openLocation的经纬度
-      success: function (res) {
+      type: 'wgs84', //'gcj02', //返回可以用于wx.openLocation的经纬度
+      success: function(res) {
         var latitude = res.latitude
         var longitude = res.longitude
         //console.log(res.latitude);
@@ -251,7 +252,7 @@ Page({
 
         wx.request({
           url: app.baseurl + "/api/bus/findNearbyStop?lat=" + latitude + "&lng=" + longitude,
-          success: function (res) {
+          success: function(res) {
             var stops = [];
             for (var i in res.data) {
               var item = res.data[i];
@@ -278,19 +279,19 @@ Page({
               stops: stops
             })
           },
-          fail: function () {
+          fail: function() {
             wx.showToast({
               image: "/resources/error-network.png",
               title: '请求失败请重试',
             });
           },
-          complete: function () {
+          complete: function() {
             wx.stopPullDownRefresh();
             self.isLoad = false;
           }
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         wx.showToast({
           image: "/resources/error-location.png",
           title: '定位失败请重试'
@@ -299,21 +300,21 @@ Page({
       }
     })
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.reloadData();
   },
-  onShow: function () {
+  onShow: function() {
     if (!this.isLoad)
       this.reloadData();
   },
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: '梧州珍宝 智慧公交',
       path: '/pages/home/home',
-      success: function (res) {
+      success: function(res) {
         // 转发成功
       },
     }

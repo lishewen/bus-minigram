@@ -1,4 +1,7 @@
 <!--home.wxml-->
+<view wx:if="{{isnotsupportversion}}" class='noinfo'>
+  <image class='noinfoimg' src="/resources/no-bus-stop.png" /> 不支持Android 5.0以下的系统，请升级手机的安卓系统
+</view>
 <swiper indicator-dots="true" autoplay="true" wx:if="{{!iswork}}">
   <block wx:for="{{images}}" wx:key="item.id">
     <swiper-item>
